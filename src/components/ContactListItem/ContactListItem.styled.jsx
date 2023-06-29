@@ -3,13 +3,16 @@ import styled from '@emotion/styled';
 export const ItemLi = styled.li`
   padding: 8px;
   display: flex;
-  justify-content: space-between;
   &:nth-of-type(2n) {
     background-color: #edc3ca;
   }
 `;
 
-export const ItemSpan = styled.span``;
+export const ItemSpan = styled.span`
+  width: 200px;
+  margin-right: 80px;
+  margin-left: auto;
+`;
 
 export const Button = styled.button`
   padding: 4px;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { nanoid } from 'nanoid';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
@@ -19,13 +20,16 @@ export class App extends Component {
     const { contacts } = this.state;
     const newContactName = newContact.name.toLowerCase();
 
-    contacts.find(
+    const isExist = contacts.find(
       contact => contact.name.toLocaleLowerCase() === newContactName
-    )
-      ? alert(`${newContact.name} is already in contacts.`)
-      : this.setState(({ contacts }) => ({
-          contacts: [newContact, ...contacts],
-        }));
+    );
+    if (isExist) {
+      alert(`${newContact.name} is already in contacts.`);
+      return;
+    }
+    this.setState(({ contacts }) => ({
+      contacts: [{ id: nanoid(), ...newContact }, ...contacts],
+    }));
   };
 
   deleteContact = contactId => {
